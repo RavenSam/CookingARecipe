@@ -40,12 +40,14 @@ const { article, primary = false } = Astro.props
 	</div>
 
 	<div class={` ${primary ? `w-full h-[300px]` : `w-[30%] shrink-0 ml-auto`}`}>
-		<Image
+		<!-- Astro Image not working on prod -->
+		<img
 			src={article.image + (primary ? "?w=500" : "?w=200")}
 			alt={article.title}
 			width="80"
 			height="80"
 			class="w-full h-full"
+			transition:name="image"
 		/>
 	</div>
 </a>

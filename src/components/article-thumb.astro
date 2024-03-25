@@ -14,7 +14,8 @@ const { article } = Astro.props
 	class="group-hover/blur:blur-sm group-hover/blur:opacity-70 group hover:p-0 hover:!opacity-100 hover:!blur-none transition-all duration-200 p-2 md:p-4"
 >
 	<figure class="shrink-0">
-		<Image
+		<!-- Astro Image not working on prod -->
+		<img
 			src={article.image + "?w=200"}
 			alt={article.title}
 			width="50"
