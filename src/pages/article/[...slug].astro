@@ -25,8 +25,8 @@ const content = marked.parse(article.content)
 	{
 		article.image && (
 			<figure class="max-w-7xl mx-auto">
-				<Image
-					src={article.image}
+				<img
+					src={article.image + "w=1080"}
 					alt={article.title}
 					width="1080"
 					height="720"
