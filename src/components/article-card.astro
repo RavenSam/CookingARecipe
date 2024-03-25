@@ -42,7 +42,7 @@ const { article, primary = false } = Astro.props
 	<div class={` ${primary ? `w-full h-[300px]` : `w-[30%] shrink-0 ml-auto`}`}>
 		<Image
 			src={article.image + (primary ? "?w=500" : "?w=200")}
-			alt={article.image}
+			alt={article.title}
 			width="80"
 			height="80"
 			class="w-full h-full"
