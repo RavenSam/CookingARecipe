@@ -34,10 +34,10 @@ export const getArticleBySlug = async (slug: string) => {
 /**
  *
  * @param limit the limit number of documents fetch
- * @default 50 set limit to 50 documents
+ * @default 150 set limit to 50 documents
  * @returns
  */
-export const getArticles = async (limit = 50) => {
+export const getArticles = async (limit = 150) => {
 	const articles: ArticlesResponse = await db.listDocuments(
 		import.meta.env.DATABASE_ID!,
 		import.meta.env.COLLECTION_ID!,
