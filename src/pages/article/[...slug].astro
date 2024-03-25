@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets"
+import { Image, getImage } from "astro:assets"
 import BaseLayout from "../../layouts/base.astro"
 import { getArticles, getLatestArticles } from "../../data/get-article"
 import { marked } from "marked"
@@ -20,6 +20,7 @@ export async function getStaticPaths() {
 const article = Astro.props
 
 const content = marked.parse(article.content)
+const optimizedBackground = await getImage({ src: article.image + "?w=1080" })
 
 const articles = await getLatestArticles()
 ---
@@ -29,7 +30,7 @@ const articles = await getLatestArticles()
 		article.image && (
 			<figure class="max-w-7xl mx-auto">
 				<img
-					src={article.image + "?w=1080"}
+					src={optimizedBackground.src}
 					alt={article.title}
 					width="1080"
 					height="720"
