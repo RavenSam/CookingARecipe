@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/base.astro"
+import Showcase from "../components/sections/showcase.svelte"
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts"
+import ArticlesPreview from "../components/sections/articles-preview.astro"
+import { getLatestArticles } from "../data/get-article"
+import ArticlesGrid from "../components/sections/articles-grid.astro"
+
+const articles = await getLatestArticles()
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<div class="py-10">
+		<Showcase client:load articles={articles.documents.slice(5, 10)} />
+	</div>
+
+	<div class="mt-32">
+		<ArticlesPreview
+			articles={articles.documents.slice(0, 5)}
+			title="Latest Articles"
+			description="Discover our latest cockings"
+		/>
+	</div>
+
+	<div class="mt-32">
+		<ArticlesGrid
+			articles={articles.documents.slice(0, 8)}
+			title="Latest Articles"
+			description="Discover our latest cockings"
+			blur
+		/>
+	</div>
+</BaseLayout>

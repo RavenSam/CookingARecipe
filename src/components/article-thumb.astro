@@ -1,0 +1,30 @@
+---
+import Image from "astro/components/Image.astro"
+import type { Article } from "../data/get-article"
+
+type Props = {
+	article: Article
+}
+
+const { article } = Astro.props
+---
+
+<a
+	href={`/article/${article.slug}`}
+	class="group-hover/blur:blur-sm group-hover/blur:opacity-70 group hover:p-0 hover:!opacity-100 hover:!blur-none transition-all duration-200 p-2 md:p-4"
+>
+	<figure class="shrink-0">
+		<Image
+			src={article.image + "?w=200"}
+			alt={article.title}
+			width="50"
+			height="50"
+			class="w-full h-full rounded-xl group-hover:shadow-lg"
+			transition:name="image"
+		/>
+	</figure>
+
+	<div class="p-2">
+		<h3 class="font-semibold line-clamp-2">{article.title}</h3>
+	</div>
+</a>

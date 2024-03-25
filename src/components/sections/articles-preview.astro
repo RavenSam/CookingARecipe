@@ -1,0 +1,36 @@
+---
+import type { Article } from "../../data/get-article"
+import ArticleCard from "../article-card.astro"
+
+type Props = {
+	title: string
+	description: string
+	articles: Article[]
+}
+
+const { title, description, articles } = Astro.props
+---
+
+<section class="max-w-7xl mx-auto p-2">
+	<div class="mb-6 md:mb-8 flex items-center justify-between">
+		<div class="">
+			<h2 class="text-3xl font-bold">{title}</h2>
+			<p class="text-gray-500">{description}</p>
+		</div>
+
+		<!-- <a
+			href="/article"
+			class="font-semibold border border-gray-500 rounded-full py-3 px-8 text-sm hover:text-primary hover:border-primary"
+			>View All</a
+		> -->
+	</div>
+
+	<div class="grid grid-cols-2 gap-4 md:gap-8">
+		<div class="col-span-2 md:col-span-1">
+			<ArticleCard article={articles[0]} primary />
+		</div>
+		<div class="flex flex-col justify-between space-y-2 md:space-x-0 col-span-2 md:col-span-1">
+			{articles.slice(1).map((article) => <ArticleCard article={article} />)}
+		</div>
+	</div>
+</section>

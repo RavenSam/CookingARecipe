@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets"
+import type { Article } from "../data/get-article"
+import FormattedDate from "./FormattedDate.astro"
+import { readingTime } from "../utils/calc"
+import { author } from "../consts"
+
+type Props = {
+	article: Article
+	primary?: boolean
+}
+
+const { article, primary = false } = Astro.props
+---
+
+<a
+	href={`/article/${article.slug}`}
+	class={`border border-gray-500/50 rounded-xl overflow-hidden flex bg-background hover:border-primary ${primary ? `flex-col-reverse` : ``}`}
+>
+	<div class="p-4">
+		<div class="line-clamp-2">
+			<h3 class={primary ? `text-2xl md:text-3xl font-bold mt-2` : `text-xl font-semibold`}>{article.title}</h3>
+		</div>
+
+		{primary && <p class="text-neutral/70 py-4 max-h-[180px] overflow-hidden">{article.excerpt}</p>}
+
+		<div class={`flex items-center mt-4 ${primary ? "my-4" : ""}`}>
+			<img src={author.image} alt={author.name} class={`rounded-full mr-3 ${primary ? "w-12 h-12" : "h-8 w-8"}`} />
+			<span>
+				<h4 class="text-sm font-semibold">{author.name}</h4>
+				{
+					primary && (
+						<span class="text-xs text-gray-500">
+							<FormattedDate date={article.$updatedAt} /> • {readingTime(article.content)} minutes minutes
+						</span>
+					)
+				}
+			</span>
+		</div>
+	</div>
+
+	<div class={` ${primary ? `w-full h-[300px]` : `w-[30%] shrink-0 ml-auto`}`}>
+		<Image
+			src={article.image + (primary ? "?w=500" : "?w=200")}
+			alt={article.image}
+			width="80"
+			height="80"
+			class="w-full h-full"
+			transition:name="image"
+		/>
+	</div>
+</a>
