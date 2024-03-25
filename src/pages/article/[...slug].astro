@@ -1,11 +1,12 @@
 ---
 import { Image } from "astro:assets"
 import BaseLayout from "../../layouts/base.astro"
-import { getArticles } from "../../data/get-article"
+import { getArticles, getLatestArticles } from "../../data/get-article"
 import { marked } from "marked"
 import FormattedDate from "../../components/FormattedDate.astro"
 import { author } from "../../consts"
 import { readingTime } from "../../utils/calc"
+import ArticlesGrid from "../../components/sections/articles-grid.astro"
 
 export async function getStaticPaths() {
 	const articles = await getArticles()
@@ -19,6 +20,8 @@ export async function getStaticPaths() {
 const article = Astro.props
 
 const content = marked.parse(article.content)
+
+const articles = await getLatestArticles()
 ---
 
 <BaseLayout title={article.title} description={article.excerpt} image={article.image}>
@@ -59,4 +62,8 @@ const content = marked.parse(article.content)
 
 		<div set:html={content} />
 	</article>
+
+	<div class="mt-32">
+		<ArticlesGrid articles={articles.documents.slice(0, 4)} title="You may also like" />
+	</div>
 </BaseLayout>
