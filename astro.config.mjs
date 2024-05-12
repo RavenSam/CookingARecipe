@@ -10,6 +10,6 @@ import netlify from "@astrojs/netlify"
 export default defineConfig({
 	site: "https://cookingarecipe.com",
 	integrations: [mdx(), sitemap(), tailwind(), svelte()],
-	output: "hybrid",
+	output: "server",
 	adapter: netlify(),
 })

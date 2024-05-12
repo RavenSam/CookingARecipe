@@ -7,7 +7,7 @@
 :root {
 	scroll-behavior: smooth;
 
-	--color-primary: 255 92% 76%;
+	--color-primary: 4 74% 57%; /* #e24c41 */
 	--color-background: 0 0% 100%;
 	--color-neutral: 222 47% 11%;
 }

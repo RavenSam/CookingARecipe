@@ -24,7 +24,7 @@
 </script>
 
 <button class="p-2" aria-label={`Switch to ${darkMode ? "light" : "dark"} mode`} on:click={handleClick}>
-	<span class="dark-mode-button block" />
+	<span class="dark-mode-button block size-5" />
 </button>
 
 <style>
